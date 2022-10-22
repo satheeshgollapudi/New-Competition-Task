@@ -12,6 +12,7 @@ namespace MarsFramework
     internal class Profile
     {
         //Profile changes
+        //Manage Listings
         public Profile()
         {
             PageFactory.InitElements(Global.GlobalDefinitions.driver, this);
