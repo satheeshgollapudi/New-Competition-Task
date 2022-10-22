@@ -360,11 +360,16 @@ namespace MarsFramework
 
                 Base.test.Log(LogStatus.Info, "Added Certificate successfully");
 
-                
-
-
-
             }
+
+
+        public String GetText(String elementText)
+        {
+            String ActualValue = GlobalDefinitions.driver.FindElement(By.XPath("//td[text()='" + elementText + "']")).Text;
+
+            return ActualValue;
+
+        }
 
 
         }

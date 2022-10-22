@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using MarsFramework.Global;
+using NUnit.Framework;
 using RelevantCodes.ExtentReports;
 using System;
 
@@ -40,7 +41,54 @@ namespace MarsFramework
                 }
 
 
+
+            [Test]
+            public void AddNewLanguageTest()
+            {
+
+                GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "Profile");
+                try
+                {
+                    // Creates a toggle for the given test, adds all log events under it    
+                    test = extent.StartTest("Add New Language");
+
+                    // Create an class and object to call the method
+                    Profile profile = new Profile();
+
+                    // obj1.EnterShareSkill();
+                    profile.AddNewLanguage();
+
+                    string ExpectedValue = GlobalDefinitions.ExcelLib.ReadData(2, "Language");
+                    Console.WriteLine(ExpectedValue);
+                    string ActualValue = "ListingManagement";
+
+
+
+
+                    if (ExpectedValue == ActualValue)
+                    {
+                        test.Log(LogStatus.Pass, "Test Passed, Added a Skill Successfully");
+                        Console.WriteLine("Test Passed Added a Skill Successfully");
+
+                    }
+
+                    else
+                    {
+
+                        test.Log(LogStatus.Fail, "Test Failed Expected not equal");
+                        Console.WriteLine("Test Failed not equal");
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    test.Log(LogStatus.Fail, "Test Failed", e.StackTrace);
+                    Console.WriteLine("Test Failed");
+                }
+
             }
+
+        }
 
 
 
