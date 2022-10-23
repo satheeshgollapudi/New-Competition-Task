@@ -88,7 +88,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Users\gskum\OneDrive\Documents\SatheeshProject\marsframework-master\MarsFramework\TestReports\ExtentReports 2.0_files.
+        ///   Looks up a localized string similar to C:\Users\gskum\OneDrive\Documents\SatheeshProject\marsframework-master\MarsFramework\TestReports\ExtentReports 2.0_files.html.
         /// </summary>
         internal static string ReportPath {
             get {

@@ -29,7 +29,7 @@ namespace MarsFramework
 
         //AvailabilityHoursEdit
         //Click on Availability Edit button
-        [FindsBy(How = How.XPath, Using = "//span[contains(text(),'week')]//i[@class='right floated outline small write icon']")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[1]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[3]/div/span/i[1]")]
         private IWebElement AvailabilityHoursEdit { get; set; }
 
         //Click on Availability Time option
@@ -41,8 +41,8 @@ namespace MarsFramework
         private IWebElement AvailabilityHours { get; set; }
 
         //Click on salary
-        [FindsBy(How = How.XPath, Using = "//*[@id='account-profileEdit-section']/div/section[2]/div/div/div/form/div[1]/div/div[4]/div")]
-        private IWebElement Salary { get; set; }
+        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[4]/div/span/i[1]")]
+        private IWebElement SalaryEdit { get; set; }
 
         //Click on Location
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profileEdit-section']/div/section[2]/div/div/div/form/div[2]/div/div[2]/div")]
@@ -198,48 +198,76 @@ namespace MarsFramework
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "Profile");
 
 
-             //Click on Edit button
-             AvailabilityTimeEdit.Click();
-             AvailabilityTime.Click();
-             //AvailabilityTimeOpt.Click();
+            //Click on Edit button
+         /*   AvailabilityTimeEdit.Click();
+            //AvailabilityTime.Click();
+            //AvailabilityTimeOpt.Click();
 
 
-             // Actions action = new Actions(GlobalDefinitions.driver);
-             // action.MoveToElement(AvailabilityTime).Build().Perform();
-             Thread.Sleep(1000);
-             //IList<IWebElement> AvailableTime = AvailabilityTimeOpt.FindElements(By.TagName("div"));
-             IList<IWebElement> AvailableTime = GlobalDefinitions.driver.FindElements(By.XPath("//select[@name='availabiltyType']/option"));
-             int count = AvailableTime.Count;
-             for (int i = 0; i < count; i++)
-             {
-                 if (AvailableTime[i].Text == GlobalDefinitions.ExcelLib.ReadData(2, "AvailableTime"))
-                 {
-                     AvailableTime[i].Click();
-                     Base.test.Log(LogStatus.Info, "Select the available time");
-                     //Console.WriteLine(AvailableTime[i].Text);
-                     //Console.WriteLine(count);
+            // Actions action = new Actions(GlobalDefinitions.driver);
+            // action.MoveToElement(AvailabilityTime).Build().Perform();
+            Thread.Sleep(1000);
+            //IList<IWebElement> AvailableTime = AvailabilityTimeOpt.FindElements(By.TagName("div"));
+            IList<IWebElement> AvailableTime = GlobalDefinitions.driver.FindElements(By.XPath("//select[@name='availabiltyType']/option"));
+            int count = AvailableTime.Count;
+            for (int i = 0; i < count; i++)
+            {
+                if (AvailableTime[i].Text == GlobalDefinitions.ExcelLib.ReadData(2, "AvailableTime"))
+                {
+                    AvailableTime[i].Click();
+                    Base.test.Log(LogStatus.Info, "Select the available time");
+                    //Console.WriteLine(AvailableTime[i].Text);
+                    //Console.WriteLine(count);
+                    break;
 
-                 }
-             }                              
+                }
+            }*/
 
             //Availability Hours Edit
-                      AvailabilityHoursEdit.Click();
-            //Availability Hours option
+            AvailabilityHoursEdit.Click();
+            
             //AvailabilityHoursDropDown.Click();
-            AvailabilityHours.Click();
+            IList<IWebElement> AvailableHours = GlobalDefinitions.driver.FindElements(By.XPath("//select[@name='availabiltyHour']/option"));
+            int count = AvailableHours.Count;
+            for (int i = 0; i < count; i++)
+            {
+                if (AvailableHours[i].Text == GlobalDefinitions.ExcelLib.ReadData(2, "AvailableHours"))
+                {
+                    AvailableHours[i].Click();
+                    Base.test.Log(LogStatus.Info, "Select the available Hours");
+                    //Console.WriteLine(AvailableTime[i].Text);
+                    //Console.WriteLine(count);
+                    break;
+
+                }
+            }
 
             //Salary 
-            // SalaryEdit.Click();
+            SalaryEdit.Click();
+
             //Choose the option from salary dropdown
-            //SalaryDropdown.Click();
 
-            //SalaryOpt.Click();
 
+            IList<IWebElement> AvailableTarget = GlobalDefinitions.driver.FindElements(By.XPath("//select[@name='availabiltyTarget']/option"));
+             count = AvailableTarget.Count;
+            for (int i = 0; i < count; i++)
+            {
+                if (AvailableTarget[i].Text == GlobalDefinitions.ExcelLib.ReadData(2, "AvailableTime"))
+                {
+                    AvailableTarget[i].Click();
+                    Base.test.Log(LogStatus.Info, "Select the available time");
+                    //Console.WriteLine(AvailableTime[i].Text);
+                    //Console.WriteLine(count);
+                    break;
+
+
+
+                }
+            }
         }
-
-
-        internal void AddNewLanguage()
+                        internal void AddNewLanguage()
         {
+            Global.GlobalDefinitions.wait(60000);
 
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "Profile");
             //Click on Add New button
@@ -271,7 +299,8 @@ namespace MarsFramework
         }
         
         internal void AddNewSkills() {
-                
+
+            Global.GlobalDefinitions.wait(60000);
 
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "Profile");
 
@@ -300,6 +329,8 @@ namespace MarsFramework
         }
 
         internal void AddNewEducation() {
+
+            Global.GlobalDefinitions.wait(60000);
 
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "Profile");
 
@@ -336,6 +367,8 @@ namespace MarsFramework
         }
 
         internal void AddNewCertification() {
+
+            Global.GlobalDefinitions.wait(60000);
 
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "Profile");
 
