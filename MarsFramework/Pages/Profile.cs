@@ -252,7 +252,7 @@ namespace MarsFramework
              count = AvailableTarget.Count;
             for (int i = 0; i < count; i++)
             {
-                if (AvailableTarget[i].Text == GlobalDefinitions.ExcelLib.ReadData(2, "AvailableTime"))
+                if (AvailableTarget[i].Text == GlobalDefinitions.ExcelLib.ReadData(2, "AvailableTarget"))
                 {
                     AvailableTarget[i].Click();
                     Base.test.Log(LogStatus.Info, "Select the available time");

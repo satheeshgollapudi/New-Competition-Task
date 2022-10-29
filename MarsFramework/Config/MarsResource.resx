@@ -122,7 +122,7 @@
     <comment>1 for firefox and 2 for Chrome</comment>
   </data>
   <data name="ExcelPath" xml:space="preserve">
-    <value>C:\Users\gskum\OneDrive\Documents\Satheesh Project\marsframework-master\MarsProfilepageTestConditionsandTestcases.xlsx</value>
+    <value>C:\Users\gskum\OneDrive\Documents\SatheeshProject\marsframework-master\MarsProfilepageTestConditionsandTestcases.xlsx</value>
   </data>
   <data name="IsLogin" xml:space="preserve">
     <value>true</value>
