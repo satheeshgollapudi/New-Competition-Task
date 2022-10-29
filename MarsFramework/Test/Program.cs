@@ -32,6 +32,8 @@ namespace MarsFramework
 
                     string ExpectedValue = GlobalDefinitions.ExcelLib.ReadData(2, "AvailableTime");
                     Console.WriteLine(ExpectedValue);
+
+                    profile.AvailabilityTimeEdit.Click();
                     string ActualValue = profile.GetText(GlobalDefinitions.ExcelLib.ReadData(2, "AvailableTime"));
 
 
@@ -125,7 +127,7 @@ namespace MarsFramework
 
                     profile.AddNewSkills();
 
-                    //string ExpectedValue = "xxx";
+                    
                    string ExpectedValue = GlobalDefinitions.ExcelLib.ReadData(2, "Skill");
                     Console.WriteLine(ExpectedValue);
                     string ActualValue = profile.GetText(GlobalDefinitions.ExcelLib.ReadData(2, "Skill"));
@@ -176,9 +178,9 @@ namespace MarsFramework
                     profile.AddNewEducation();
 
                     
-                    string ExpectedValue = GlobalDefinitions.ExcelLib.ReadData(2, "Education");
+                    string ExpectedValue = GlobalDefinitions.ExcelLib.ReadData(2, "University");
                     Console.WriteLine(ExpectedValue);
-                    string ActualValue = profile.GetText(GlobalDefinitions.ExcelLib.ReadData(2, "Education"));
+                    string ActualValue = profile.GetText(GlobalDefinitions.ExcelLib.ReadData(2, "University"));
 
 
 
