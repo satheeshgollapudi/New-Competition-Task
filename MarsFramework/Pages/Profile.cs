@@ -21,7 +21,7 @@ namespace MarsFramework
         #region  Initialize Web Elements 
         //Click on Availability Time Edit button
         [FindsBy(How = How.XPath, Using = "//span[contains(text(),' Time')]//i[@class='right floated outline small write icon']")]
-        private IWebElement AvailabilityTimeEdit { get; set; }
+        public IWebElement AvailabilityTimeEdit { get; set; }
 
         //Click on Availability Time dropdown
         [FindsBy(How = How.Name, Using = "availabiltyType")]
@@ -36,13 +36,23 @@ namespace MarsFramework
         [FindsBy(How = How.XPath, Using = "//option[@value='0']")]
         private IWebElement AvailabilityTimeOpt { get; set; }
 
+        //Clickon  Availability Remove icon
+        [FindsBy(How = How.XPath, Using = "//body[1]/div[2]/div[1]/section[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[2]/div[1]/span[1]/i")]
+        private IWebElement AvailabilityRemoveIcon { get; set; }
+
+
         //Click on Availability Hour dropdown
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profileEdit-section']/div/section[2]/div/div/div/form/div[1]/div/div[3]/div")]
         private IWebElement AvailabilityHours { get; set; }
 
-        //Click on salary
-        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/section[2]/div/div/div/div[2]/div/div/div/div/div/div[3]/div/div[4]/div/span/i[1]")]
+        //Click on EarnTarget
+        [FindsBy(How = How.XPath, Using = "//body/div[@id='account-profile-section']/div[1]/section[2]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/div[3]/div[1]/div[4]/div[1]/span[1]/i[1]")]
         private IWebElement SalaryEdit { get; set; }
+
+        //Select EarnTarget
+        [FindsBy(How = How.XPath, Using = "//select[@name='availabiltyTarget']/option[3]")]
+        private IWebElement EarnTarget { get; set; }
+
 
         //Click on Location
         [FindsBy(How = How.XPath, Using = "//*[@id='account-profileEdit-section']/div/section[2]/div/div/div/form/div[2]/div/div[2]/div")]
@@ -142,7 +152,7 @@ namespace MarsFramework
         private IWebElement Degree { get; set; }
 
         //Year of graduation
-        [FindsBy(How = How.XPath, Using = "//*[@id='account-profileEdit-section']/div/section[2]/div/div/div/form/div[5]/div/div[2]/div/div/div[2]/div[3]/select")]
+        [FindsBy(How = How.XPath, Using = "//select[@name='yearOfGraduation']/option[8]")]
         private IWebElement YearOfGraduation { get; set; }
 
         //Choose Year
@@ -150,7 +160,7 @@ namespace MarsFramework
         private IWebElement DegreeYearOpt { get; set; }
 
         //Click on Add
-        [FindsBy(How = How.XPath, Using = "//*[@id='account-profileEdit-section']/div/section[2]/div/div/div/form/div[5]/div/div[2]/div/div/div[3]/div/input[1]")]
+        [FindsBy(How = How.XPath, Using = "//select[@name='yearOfGraduation']/ancestor::div[@class='fields']/following-sibling::div/div/input[@value='Add']")]
         private IWebElement AddEdu { get; set; }
 
         //Click Certificate tab
@@ -199,9 +209,8 @@ namespace MarsFramework
 
 
             //Click on Edit button
-         /*   AvailabilityTimeEdit.Click();
-            //AvailabilityTime.Click();
-            //AvailabilityTimeOpt.Click();
+            AvailabilityTimeEdit.Click();
+           
 
 
             // Actions action = new Actions(GlobalDefinitions.driver);
@@ -218,17 +227,20 @@ namespace MarsFramework
                     Base.test.Log(LogStatus.Info, "Select the available time");
                     //Console.WriteLine(AvailableTime[i].Text);
                     //Console.WriteLine(count);
+                    AvailabilityRemoveIcon.Click();
                     break;
 
+               
+
                 }
-            }*/
+            }
 
             //Availability Hours Edit
             AvailabilityHoursEdit.Click();
             
             //AvailabilityHoursDropDown.Click();
             IList<IWebElement> AvailableHours = GlobalDefinitions.driver.FindElements(By.XPath("//select[@name='availabiltyHour']/option"));
-            int count = AvailableHours.Count;
+             count = AvailableHours.Count;
             for (int i = 0; i < count; i++)
             {
                 if (AvailableHours[i].Text == GlobalDefinitions.ExcelLib.ReadData(2, "AvailableHours"))
@@ -242,34 +254,41 @@ namespace MarsFramework
                 }
             }
 
+            
+
             //Salary 
             SalaryEdit.Click();
 
-            //Choose the option from salary dropdown
+             //Choose the option from salary dropdown
 
 
-            IList<IWebElement> AvailableTarget = GlobalDefinitions.driver.FindElements(By.XPath("//select[@name='availabiltyTarget']/option"));
-             count = AvailableTarget.Count;
-            for (int i = 0; i < count; i++)
-            {
-                if (AvailableTarget[i].Text == GlobalDefinitions.ExcelLib.ReadData(2, "AvailableTarget"))
-                {
-                    AvailableTarget[i].Click();
-                    Base.test.Log(LogStatus.Info, "Select the available time");
-                    //Console.WriteLine(AvailableTime[i].Text);
-                    //Console.WriteLine(count);
-                    break;
+           IList<IWebElement> AvailableTarget = GlobalDefinitions.driver.FindElements(By.XPath("//select[@name='availabiltyTarget']/option"));
+              count = AvailableTarget.Count;
+             for (int i = 0; i < count; i++)
+             {
+                 if (AvailableTarget[i].Text == GlobalDefinitions.ExcelLib.ReadData(2, "AvailableTarget"))
+                 {
+                     AvailableTarget[i].Click();
+                     Base.test.Log(LogStatus.Info, "Select the available time");
+                     //Console.WriteLine(AvailableTime[i].Text);
+                     //Console.WriteLine(count);
+                     break;
 
 
 
-                }
-            }
+                 }
+             }
+
+           // EarnTarget.Click();
         }
-                        internal void AddNewLanguage()
+
+
+    internal void AddNewLanguage()
         {
             Global.GlobalDefinitions.wait(60000);
 
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "Profile");
+
             //Click on Add New button
             ClickLanguagetab.Click();
 
@@ -315,9 +334,6 @@ namespace MarsFramework
             AddSkillText.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Skill"));
 
             //Click the skill dropdown
-         
-
-
             //SelectElement SkillLevel = new SelectElement(GlobalDefinitions.driver.FindElement(By.XPath("//select[@name='level']/option[contains(text()',"+ skillLevel+ "')]")));
             SelectElement SkillLevel = new SelectElement(Global.GlobalDefinitions.driver.FindElement(By.XPath("//input[@placeholder='Add Skill']/parent::div/following-sibling::div/select[@name='level']")));
             SkillLevel.SelectByText(Global.GlobalDefinitions.ExcelLib.ReadData(2, "SkillLevel"));
@@ -359,9 +375,11 @@ namespace MarsFramework
             Degree.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Degree"));
 
             //Year of Graduation
-            SelectElement YearOfGraduation = new SelectElement(Global.GlobalDefinitions.driver.FindElement(By.XPath("//select[@name='yearOfGraduation']")));
-            YearOfGraduation.SelectByText(Global.GlobalDefinitions.ExcelLib.ReadData(2, "Year"));
-            
+            //SelectElement YearOfGraduation = new SelectElement(Global.GlobalDefinitions.driver.FindElement(By.XPath("//select[@name='yearOfGraduation']")));
+            //YearOfGraduation.SelectByText(Global.GlobalDefinitions.ExcelLib.ReadData(2, "Year"));
+            YearOfGraduation.Click();
+
+            AddEdu.Click();
 
             Base.test.Log(LogStatus.Info, "Added Education successfully");
         }
