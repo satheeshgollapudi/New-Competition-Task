@@ -35,6 +35,14 @@ namespace MarsFramework.Global
         }
         #endregion
 
+        public String GetText(String elementText)
+        {
+            String ActualValue = GlobalDefinitions.driver.FindElement(By.XPath("//td[text()='" + elementText + "']")).Text;
+
+            return ActualValue;
+
+        }
+
 
         #region Excel 
         public class ExcelLib

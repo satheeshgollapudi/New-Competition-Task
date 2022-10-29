@@ -1,5 +1,6 @@
 ﻿using MarsFramework.Global;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
 using RelevantCodes.ExtentReports;
 using System;
@@ -38,7 +39,7 @@ namespace MarsFramework.Pages
         internal void Listings()
         {
             //Populate the Excel Sheet
-            //GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "ManageListings");
+            GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "ManageListings");
 
 
 
@@ -48,7 +49,7 @@ namespace MarsFramework.Pages
 
 
             //Click on view the listing
-           // view.Click();
+            // view.Click();
 
             //GlobalDefinitions.driver.Navigate().Back();
 
@@ -56,7 +57,7 @@ namespace MarsFramework.Pages
             edit.Click();
 
             ShareSkill obj = new ShareSkill();
-            obj.EnterShareSkill1();
+            obj.editShareSkill();
 
 
             //Click on delete the listing
@@ -74,8 +75,8 @@ namespace MarsFramework.Pages
                 // int j = i + 1;
                 var Name = GlobalDefinitions.driver.FindElement(By.XPath("//table[@class='ui striped table']/tbody/tr[" + i + "]/td[3]")).Text;
                 Console.WriteLine("Name is : " + Name);
-                if (Name.Equals(ExcelLib.ReadData(2, "Title")))
-                   
+                if (Name.Equals(ExcelLib.ReadData(2, "EditTitle")))
+
                 {
                     GlobalDefinitions.driver.FindElement(By.XPath("//table[@class='ui striped table']/tbody/tr[" + i + "]/td[8]/div/button[3]/i")).Click();
                     Base.test.Log(LogStatus.Pass, "Clicking on delete icon has been successfully performed");
@@ -86,28 +87,53 @@ namespace MarsFramework.Pages
 
             // To click on yes or no in the alert message for deleting
 
-            // action.MoveToElement(clickActionsButton).Build().Perform();
+            /* Actions action = new OpenQA.Selenium.Interactions.Actions(GlobalDefinitions.driver);
+             action.MoveToElement(clickActionsButton).Build().Perform();
 
-            IList<IWebElement> clickAction = clickActionsButton.FindElements(By.TagName("button"));
-            //Indicating the number of buttons present
-            int clickActionCount = clickAction.Count;
-            Console.WriteLine("Number of Actions for Deleting : " + clickActionCount);
-            for (int i = 1; i <= clickActionCount; i++)
-            {
-                if (clickAction[i].Text == GlobalDefinitions.ExcelLib.ReadData(2, "Deleteaction"))
-                {
-                    clickAction[i].Click();
-                    Base.test.Log(LogStatus.Info, "Action has been performed successfully");
+             IList<IWebElement> clickAction = clickActionsButton.FindElements(By.TagName("button"));
+             //Indicating the number of buttons present
+             int clickActionCount = clickAction.Count;
+             Console.WriteLine("Number of Actions for Deleting : " + clickActionCount);
+             for (int i = 1; i <= clickActionCount; i++)
+             {
+                 if (clickAction[i].Text == GlobalDefinitions.ExcelLib.ReadData(2, "Deleteaction"))
+                 {
+                     clickAction[i].Click();
+                     Base.test.Log(LogStatus.Info, "Action has been performed successfully");
 
-                    break;
-                }
+                     break;
+                 }
 
-            }
+             }*/
+            GlobalDefinitions.driver.FindElement(By.XPath("//div[@class='actions']/button[contains(text(),'Yes')]")).Click();
+
+        }
+
+        public String GetText(String elementText)
+        {
+            String ActualValue = GlobalDefinitions.driver.FindElement(By.XPath("//td[text()='" + elementText + "']")).Text;
+
+            return ActualValue;
+
+
 
         }
 
 
+        public String ActualValue()
+        {
+            String ActualValue = GlobalDefinitions.driver.FindElement(By.XPath("//table/tbody/tr[2]/td[3]")).Text;
 
+            return ActualValue;
+
+
+
+
+
+
+
+
+        }
     }
-}
 
+}
