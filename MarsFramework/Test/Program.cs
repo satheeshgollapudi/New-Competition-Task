@@ -12,6 +12,8 @@ namespace MarsFramework
         class User : Global.Base
         {
 
+            
+
             [Test]
 
            
