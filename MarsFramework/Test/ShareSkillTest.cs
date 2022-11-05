@@ -15,13 +15,8 @@ namespace MarsFramework.Test
         [TestFixture]
         class User : Global.Base
         {
-
-          
-
-
+            
             [Test]
-
-
             public void skillShareTest()
             {
 
