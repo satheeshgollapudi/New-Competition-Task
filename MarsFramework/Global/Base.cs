@@ -11,6 +11,8 @@ namespace MarsFramework.Global
 {
     class Base
     {
+        
+        //Title- competetion task
         #region To access Path from resource file
 
         public static int Browser = Int32.Parse(MarsResource.Browser);
